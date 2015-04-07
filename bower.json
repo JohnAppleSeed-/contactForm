@@ -1,0 +1,13 @@
+{
+  "name": "webBlog",
+  "description": "webBlog",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-loader": "latest",
+    "angular-bootstrap": "latest",
+    "angular-file-upload":"latest",
+    "angular-mocks": "latest"
+  }
+}

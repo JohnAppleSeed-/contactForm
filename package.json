@@ -1,0 +1,21 @@
+{
+  "name": "webblog",
+  "private": "true",
+  "version": "0.0.0",
+  "description": "webblog",
+  "repository": "",
+  "license": "",
+  "devDependencies": {
+    "bower": "latest",
+    "connect-multiparty": "latest",
+    "imagemin": "latest",
+    "connect": "latest",
+    "body-parser": "latest",
+    "colors":"latest",
+    "nodemailer":"latest",
+    "express": "latest"
+  },
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}

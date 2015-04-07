@@ -1,0 +1,119 @@
+  'use strict';
+  var app = angular.module('myApp.controllers', ['ui.bootstrap']);
+
+  function AppCtrl($scope, $http) {
+    $http.get('/api/getInfo')
+      .success(function(data) {
+        $scope.posts = data;
+      })
+      .error(function(err, data) {
+        $scope.posts = data;
+      });
+
+    $http.get('/api/getMenu')
+      .success(function(data) {
+        $scope.Menus = data[0].menu;
+      })
+      .error(function(err, data) {
+        $scope.Menus = data;
+      });
+    }
+
+  function AdminCtrl($scope, $http, ) {
+
+    $http.get('/api/getInfo')
+      .success(function(data) {
+        $scope.posts = data;
+      })
+      .error(function(err, data) {
+        if (err) throw err;
+      });
+
+    $http.get('/api/getMenu')
+      .success(function(data) {
+       $scope.Menus = data[0].menu;
+      })
+      .error(function(err, data) {
+        $scope.Menus = data;
+      });
+
+    $scope.postInfo = function() {
+      $http.post('/api/postInfo', {
+        infoName  : $scope.posts[0].loc.Name,
+        infoHours : $scope.posts[0].loc.Hours,
+        infoLoc   : $scope.posts[0].loc.Loc,
+        infoCity  : $scope.posts[0].loc.City,
+        infoPhone : $scope.posts[0].loc.Phone,
+        infoSlogan: $scope.posts[0].loc.Slogan
+      })
+      .success(function(data) {
+         $scope.reply = (data);
+      })
+      .error(function(err, data) {
+         $scope.reply = (data);
+      });
+    };
+
+    $scope.saveNewMenu = function() {
+      $http.post('/api/postMenu', {
+        newMenu : $scope.Menus
+      })
+      .success(function(data) {
+         $scope.reply = (data);
+         alert('Saved');
+      })
+      .error(function(err, data) {
+         $scope.reply = (data);
+      });
+    };
+ 
+    $scope.addFields = function (index) {
+      $scope.Menus[index].Dishes.push({});
+    };
+  
+    $scope.removeFields = function(index, parentIndex) {
+      $scope.Menus[parentIndex].Dishes.splice(index, 1);
+    };
+
+    $scope.removeMenu = function(index) {
+      $scope.Menus.splice(index, 1);
+    };
+
+
+    $scope.addMenu = function() {
+      if($scope.Menus) {
+        $scope.Menus.push({Dishes:[]});
+      } else {
+        $scope.Menus = [];
+      }
+    };
+     
+}
+
+appControllers.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'UserService', 'AuthenticationService',
+    function AdminUserCtrl($scope, $location, $window, UserService, AuthenticationService) {
+ 
+        //Admin User Controller (login, logout)
+        $scope.logIn = function logIn(username, password) {
+            if (username !== undefined && password !== undefined) {
+ 
+                UserService.logIn(username, password).success(function(data) {
+                    AuthenticationService.isLogged = true;
+                    $window.sessionStorage.token = data.token;
+                    $location.path("/admin");
+                }).error(function(status, data) {
+                    console.log(status);
+                    console.log(data);
+                });
+            }
+        }
+ 
+        $scope.logout = function logout() {
+            if (AuthenticationService.isLogged) {
+                AuthenticationService.isLogged = false;
+                delete $window.sessionStorage.token;
+                $location.path("/");
+            }
+        }
+    }
+]);

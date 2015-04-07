@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" style = "font-family: Opens-Sans">
+<head>
+  <meta charset="utf-8">
+  <title ng-controller="AppCtrl">JOBS</title>
+   <link rel="icon" 
+      type="image/png" 
+      href="js/myicon.png">
+  <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/styleshome.css" type="text/css" />
+</head>
+<body >
+    
+<script type="text/javascript">
+  document.body.style.marginTop        = "0";
+  document.body.style.marginBottom     = "0";
+  document.body.style.marginLeft       = "0";
+  document.body.style.marginRight      = "0";
+  document.body.style.paddingTop       = "0";
+  document.body.style.paddingBottom    = "0";
+  document.body.style.paddingLeft      = "0";
+  document.body.style.paddingRight     = "0";
+  document.body.style.fontFamily      = "sans-serif";
+    </script>
+
+  <div id = "menu" ng-controller="AppCtrl">
+    <ul class = "menu">
+      <li class='restName'><a href="/#/index"><b>JOBS</b></a></li>
+      <li class='restLoc'><a href="/#/page1">page1</a></li>
+      <li class='restInfo'><a href="/#/page2">page2</a></li>
+      <li class='restInfo'><a href="/#/page3">page3</a></li>
+      <li class='restInfo'><a href="/#/page4">page4</a></li>
+    </ul>
+  </div>
+  <div ng-view></div>
+
+    
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script type = "text/javaScript" src="../bower_components/angular/angular.min.js"></script>
+  <script type = "text/javaScript" src="../bower_components/angular-route/angular-route.min.js"></script>
+  <script type = "text/javaScript" src="../bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+  <script type = "text/javaScript" src="js/controllers.js"></script>
+  <script type = "text/javaScript" src="js/app.js"></script>
+  <script type = "text/javaScript" src="js/services.js"></script>
+  <script type = "text/javaScript" src="js/filters.js"></script>
+  <script type = "text/javaScript" src="js/directives.js"></script>
+
+    </body>
+</html>
